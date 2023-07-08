@@ -12,22 +12,29 @@
 import math
 
 # Parameters
-lawnmower_sound_level = 90  # dB
-distance_from_lawnmower = 20  # meters
-wooden_house_thickness = 12  # inches
+lawnmower_sound_level =   float(input("What is your lawnmower frequency in decibels"))# 90  # dB
+distance_from_lawnmower = float(input("How far is the material from the lawnmower?\n")) #20  # meters
+wooden_house_thickness = float(input(" What is the thickness of the Material?"))#12  # inches
 wood_absorption_coefficient = 0.05
 
+def wood_sim():
 # Calculate sound level reduction due to distance
-distance_ratio = distance_from_lawnmower / 1  # Assuming lawnmower is at 0 distance
-sound_level_reduction = 6 * math.log2(distance_ratio)
+    distance_ratio = distance_from_lawnmower / 1  # Assuming lawnmower is at 0 distance
+    sound_level_reduction = 6 * math.log2(distance_ratio)
 
-# Calculate additional sound level reduction due to absorption
-additional_sound_level_reduction = 10 * math.log10(1 - wood_absorption_coefficient)
+    # Calculate additional sound level reduction due to absorption
+    additional_sound_level_reduction = 10 * math.log10(1 - wood_absorption_coefficient)
 
-# Calculate total sound level reduction
-total_sound_level_reduction = sound_level_reduction + additional_sound_level_reduction
+    # Calculate total sound level reduction
+    total_sound_level_reduction = sound_level_reduction + additional_sound_level_reduction
 
-# Calculate sound level at the wooden house
-sound_level_at_house = lawnmower_sound_level - total_sound_level_reduction
+    # Calculate sound level at the wooden house
+    sound_level_at_house = lawnmower_sound_level - total_sound_level_reduction
 
-print(f"The estimated sound level at the wooden house is approximately {sound_level_at_house:.2f} dB.")
+    print(f"The estimated sound level at the wooden house is approximately {sound_level_at_house:.2f} dB.")
+    if sound_level_at_house <= 45:
+        print (f" The noise cannot be heard ")
+    else:
+        print (" You could try adding some sound insulation materials to reduce the sound")
+wood_sim()
+
